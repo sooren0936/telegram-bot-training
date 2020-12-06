@@ -24,7 +24,7 @@ public class TelegramBotConfig {
 
     @Bean
     public TelegramBot telegramBotBeanConfig() {
-        TelegramBot telegramBot = new TelegramBot();
+        final TelegramBot telegramBot = new TelegramBot();
         telegramBot.setBotUsername(botUsername);
         telegramBot.setBotToken(botToken);
         telegramBot.setWebHookPath(webHookPath);

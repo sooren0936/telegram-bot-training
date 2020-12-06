@@ -22,7 +22,7 @@ public class WebHockController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public BotApiMethod<?> onUpdateReceived(@RequestBody Update update) {
+    public BotApiMethod<?> onUpdateReceived(@RequestBody final Update update) {
         return telegramBot.onWebhookUpdateReceived(update);
     }
 }

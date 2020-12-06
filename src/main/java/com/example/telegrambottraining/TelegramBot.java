@@ -1,5 +1,7 @@
 package com.example.telegrambottraining;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -10,6 +12,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
  * @author Suren Kalaychyan
  */
 public class TelegramBot extends TelegramWebhookBot {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(TelegramBot.class);
 
     private String botUsername;
     private String botToken;
@@ -43,14 +47,14 @@ public class TelegramBot extends TelegramWebhookBot {
     }
 
     @Override
-    public BotApiMethod onWebhookUpdateReceived(Update update) {
+    public BotApiMethod onWebhookUpdateReceived(final Update update) {
         if (update.getMessage() != null && update.getMessage().hasText()) {
-            long chatId = update.getMessage().getChatId();
+            final long chatId = update.getMessage().getChatId();
 
             try {
                 execute(new SendMessage(Long.toString(chatId), "Hello Bot!"));
             } catch (TelegramApiException ex) {
-                ex.printStackTrace();
+                LOGGER.error("Unknown telegram error with message" + update.getMessage().getText());
             }
         }
 

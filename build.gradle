@@ -1,24 +1,44 @@
 plugins {
     id 'org.springframework.boot' version '2.4.0'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'ru.vyarus.quality' version '4.4.0'
     id 'java'
+    id 'idea'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+compileJava.options.encoding = 'UTF-8'
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+bootJar {
+    archiveName = 'bot.jar'
+}
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-    compile "org.telegram:telegrambots-spring-boot-starter:5.0.1"
-}
-
 test {
     useJUnitPlatform()
 }
+
+dependencies {
+    // Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Telegram
+    implementation 'org.telegram:telegrambots-spring-boot-starter:5.0.1'
+
+    // Тестирование
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
