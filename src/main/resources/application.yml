@@ -1,0 +1,4 @@
+telegrambot:
+  botUsername: <resource.delimiter>@</resource.delimiter>training_telegram_bot
+  botToken: 1400891789:AAFjMDiB0mbKxgBs13DgNQ6QQd2mZpTRY68
+  webHookPath: https://f5be5c58866e.ngrok.io
